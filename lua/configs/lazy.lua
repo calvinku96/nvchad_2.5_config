@@ -1,6 +1,7 @@
 return {
   defaults = { lazy = true },
   install = { colorscheme = { "nvchad" } },
+  concurrency = 1,
 
   ui = {
     icons = {
