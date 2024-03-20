@@ -2,6 +2,7 @@ return {
   defaults = { lazy = true },
   install = { colorscheme = { "nvchad" } },
   concurrency = 1,
+  lockfile = vim.fn.stdpath "data" .. "/lazy-lock.json",
 
   ui = {
     icons = {
