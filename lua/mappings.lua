@@ -3,8 +3,181 @@ require "nvchad.mappings"
 -- add yours here
 
 local map = vim.keymap.set
+local unmap = vim.keymap.del
 
-map("n", ";", ":", { desc = "CMD enter command mode" })
-map("i", "jk", "<ESC>")
+unmap("n", "<C-s>")
+unmap("n", "<C-n>")
+unmap("n", "<A-v>")
+unmap("n", "<A-i>")
+unmap("n", "<C-h>")
+unmap("n", "<C-j>")
+unmap("n", "<C-k>")
+unmap("n", "<C-l>")
+unmap("n", "<leader>n")
+
+-- map("n", ";", ":", { desc = "CMD enter command mode" })
+-- map("i", "jk", "<ESC>")
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+
+map("n", "<M-h>", "<C-w>h", { desc = "Window left" })
+map("n", "<M-l>", "<C-w>l", { desc = "Window right" })
+map("n", "<M-j>", "<C-w>j", { desc = "Window down" })
+map("n", "<M-k>", "<C-w>k", { desc = "Window up" })
+map("n", "<F4>", "<cmd>NvimTreeToggle <CR>", { desc = "Toggle nvimtree" })
+map("n", "<F9>", function()
+  if vim.bo.filetype == "tex" then
+    vim.cmd [[ execute ':wa' ]]
+    vim.fn.Tex_RunLaTeX()
+  elseif vim.bo.filetype == "rust" then
+    vim.cmd [[
+      execute ':wa'
+      let &makeprg= "cargo build"
+      make
+      copen 15
+      ]]
+  else
+    vim.cmd [[
+        execute ':wa'
+        if filereadable("CMakeLists.txt")
+            let build_dir = get(g:, "cmake_build_dir", "build")
+            let &makeprg = "cmake --build " . build_dir . " -j16"
+            make
+        elseif filereadable("build.sh")
+            let &makeprg = "./build.sh"
+            make
+        else
+            let &makeprg= "make"
+            make -j8
+        endif
+        copen 15
+        execute ':cc'
+      ]]
+  end
+end)
+map("n", "<C-F9>", function()
+  vim.cmd [[
+      execute ':wa'
+      if filereadable("CMakeLists.txt")
+          let build_dir = get(g:, "cmake_build_dir", "build")
+          let &makeprg = "cmake --build " . build_dir . " --target clean"
+          make
+      elseif filereadable("build.sh")
+      else
+          let &makeprg= "make"
+          make -j8 clean
+      endif
+    ]]
+end)
+map("n", "<C-9>", "<cmd>cc<CR>", { desc = "current error" })
+map("n", "<C-0>", "<cmd>cn<CR>", { desc = "next error" })
+map("n", "<C-8>", "<cmd>cp<CR>", { desc = "prev error" })
+map("n", "<leader>9", "<cmd>cc<CR>", { desc = "current error" })
+map("n", "<leader>0", "<cmd>cn<CR>", { desc = "next error" })
+map("n", "<leader>8", "<cmd>cp<CR>", { desc = "prev error" })
+map("n", "ga", "<Plug>(EasyAlign)", { desc = "EasyAlign" })
+map("n", "<F10>", "<cmd>ToggleWhitespace<cr>", { desc = "Toggle whitespace highlighting" })
+map("n", "<C-F10>", "<cmd>StripWhitespace<cr>", { desc = "Clean extra whitespace" })
+map("n", "<leader>uP", "<cmd>TSPlaygroundToggle<cr>", { desc = "Treesitter Playground" })
+map("n", "<leader>uu", vim.cmd.UndotreeToggle, { desc = "Undo Tree" })
+map("n", "\\", "<cmd>split<cr>", { desc = "Horizontal Split" })
+map("n", "|", "<cmd>vs<cr>", { desc = "Vertical Split" })
+map("n", "]b", function()
+  require("nvchad.tabufline").tabuflineNext()
+end, { desc = "Goto next buffer" })
+map("n", "[b", function()
+  require("nvchad.tabufline").tabuflinePrev()
+end, { desc = "Goto prev buffer" })
+map("n", "]t", "<cmd>tabnext<cr>", { desc = "Goto next tab" })
+map("n", "[t", "<cmd>tabprevious<cr>", { desc = "Goto prev tab" })
+map("n", "<>", "<cmd> noh <CR>", { desc = "Clear highlights" })
+map("n", "<leader>q", "<cmd>confirm q<cr>", { desc = "Quit" })
+map("n", "<leader>n", "<cmd>enew<cr>", { desc = "New buffer" })
+map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save file" })
+map("n", "<leader>b", "<cmd>tabnew<cr>", { desc = "New tab" })
+map("n", "<leader>tt", function()
+  require("nvchad.term").toggle {
+    pos = "float",
+    id = "float_term",
+    float_opts = {
+      row = 0.05,
+      col = 0.05,
+      width = 0.9,
+      height = 0.9,
+      border = "single",
+    },
+  }
+end)
+map({ "n", "t" }, "<A-i>", function()
+  require("nvchad.term").toggle {
+    pos = "float",
+    id = "float_term",
+    float_opts = {
+      row = 0.05,
+      col = 0.05,
+      width = 0.9,
+      height = 0.9,
+      border = "single",
+    },
+  }
+end)
+map("n", "<leader>tl", "<cmd>LazyGit<CR>", { desc = "LazyGit" })
+map("n", "fj", "<cmd> noh <CR>", { desc = "Clear highlights" })
+map("n", "<leader>la", function()
+  if vim.g["strip_whitespace_on_save"] == 0 then
+    vim.g["strip_whitespace_on_save"] = 1
+    print "Strip whitespace on save enabled"
+  else
+    vim.g["strip_whitespace_on_save"] = 0
+    print "Strip whitespace on save disabled"
+  end
+end)
+map("n", "<leader>ll", function()
+  vim.g.autoformat_enabled = not vim.g.autoformat_enabled
+  if vim.g.autoformat_enabled then
+    print "Autoformat Enabled"
+  else
+    print "Autoformat Disabled"
+  end
+end, { desc = "Toggle autoformat" })
+
+map("t", "<M-h>", "<C-w>h", { desc = "Window left" })
+map("t", "<M-l>", "<C-w>l", { desc = "Window right" })
+map("t", "<M-j>", "<C-w>j", { desc = "Window down" })
+map("t", "<M-k>", "<C-w>k", { desc = "Window up" })
+
+map("i", "fj", "<Esc>")
+map("i", "fJ", "<Esc>")
+
+map("x", "ga", "<Plug>(EasyAlign)", { desc = "EasyAlign" })
+
+map("n", "<leader>n", "<cmd>set nu!<CR>")
+map("n", "<leader>rn", "<cmd>set rnu!<CR>")
+
+map("n", "<leader>B", function()
+  if vim.diagnostic.is_disabled() then
+    print "Diagnostics disabled"
+  else
+    print "Diagnostics enabled"
+  end
+end, { desc = "Toggle diagnostics" })
+map("n", "<leader>d", function()
+  local d = vim.diagnostic
+  if d.is_disabled() then
+    d.enable()
+    print "Diagnostics enabled"
+  else
+    d.disable()
+    print "Diagnostics disabled"
+  end
+end, { desc = "Toggle diagnostics" })
+map("n", "<leader>k", function()
+  vim.diagnostic.open_float()
+end, { desc = "Diagnostics float" })
+map("n", "<leader>lq", function()
+  vim.diagnostic.setqflist()
+end, { desc = "Diagnostics setqflist" })
+
+map("n", "<leader>ft", function()
+  require("telescope").extensions.ctags.tags { ctags_file = "tags" }
+end, { desc = "Find CTags" })
