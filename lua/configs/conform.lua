@@ -19,10 +19,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     if not vim.g.autoformat_enabled then
       return
     end
-    if not vim.api.nvim_buf_is_valid(args.buf) or vim.bo[args.buf].buftype ~= "" then
-      return
-    end
-    require("conform").format { bufnr = args.buf, timeout_ms = 500, lsp_fallback = true }
+    -- if not vim.api.nvim_buf_is_valid(args.buf) or vim.bo[args.buf].buftype ~= "" then
+    --   return
+    -- end
+    require("conform").format {}
   end,
 })
 

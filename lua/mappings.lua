@@ -140,6 +140,12 @@ map("n", "<leader>ll", function()
     print "Autoformat Disabled"
   end
 end, { desc = "Toggle autoformat" })
+map("n", "<leader>ln", function()
+  if not vim.g.autoformat_enabled then
+    return
+  end
+  require("conform").format {}
+end, { desc = "Autoformat" })
 
 map("t", "<M-h>", "<C-w>h", { desc = "Window left" })
 map("t", "<M-l>", "<C-w>l", { desc = "Window right" })
