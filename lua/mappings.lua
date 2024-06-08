@@ -77,6 +77,14 @@ map("n", "<leader>0", "<cmd>cn<CR>", { desc = "next error" })
 map("n", "<leader>8", "<cmd>cp<CR>", { desc = "prev error" })
 map("n", "ga", "<Plug>(EasyAlign)", { desc = "EasyAlign" })
 map("n", "<F10>", "<cmd>ToggleWhitespace<cr>", { desc = "Toggle whitespace highlighting" })
+map("n", "<F12>", function()
+  vim.o.spell = not vim.o.spell
+  if vim.o.spell then
+    print("Spell check on with language: " .. vim.o.spelllang)
+  else
+    print "Spell check off"
+  end
+end, { desc = "Toggle spell" })
 map("n", "<C-F10>", "<cmd>StripWhitespace<cr>", { desc = "Clean extra whitespace" })
 map("n", "<leader>uP", "<cmd>TSPlaygroundToggle<cr>", { desc = "Treesitter Playground" })
 map("n", "<leader>uu", vim.cmd.UndotreeToggle, { desc = "Undo Tree" })
