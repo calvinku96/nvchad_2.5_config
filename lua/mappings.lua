@@ -195,3 +195,11 @@ end, { desc = "Diagnostics setqflist" })
 map("n", "<leader>ft", function()
   require("telescope").extensions.ctags.tags { ctags_file = "tags" }
 end, { desc = "Find CTags" })
+
+local autocmd = vim.api.nvim_create_autocmd
+autocmd("FileType", {
+  pattern = "tex",
+  callback = function(args)
+    map("n", "<C-j>", "<Plug>IMAP_JumpForward")
+  end,
+})
