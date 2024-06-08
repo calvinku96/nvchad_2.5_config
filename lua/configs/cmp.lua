@@ -5,7 +5,7 @@ local override = {
   mapping = {
     ["<C-j>"] = cmp.mapping(function(fallback)
       if vim.bo.filetype == "tex" then
-        fallback()
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>IMAP_JumpForward", true, true, true), "")
       elseif snip.expand_or_jumpable() then
         vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
       elseif cmp.visible() then
@@ -66,6 +66,11 @@ local override = {
     ["<CR>"] = cmp.config.disable,
   },
   sources = {
+    { name = "nvim_lsp" },
+    { name = "luasnip" },
+    { name = "buffer" },
+    { name = "nvim_lua" },
+    { name = "path" },
     {
       name = "latex_symbols",
       option = {
@@ -74,4 +79,9 @@ local override = {
     },
   },
 }
-return vim.tbl_deep_extend("force", def, override)
+-- print "===========================BEFORE==========================="
+-- vim.print(def)
+res = vim.tbl_deep_extend("force", def, override)
+-- print "===========================AFTER==========================="
+-- vim.print(res)
+return res
