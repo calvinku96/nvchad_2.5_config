@@ -132,4 +132,8 @@ return {
     },
     cmd = { "LazyGit" },
   },
+  {
+    "folke/which-key.nvim",
+    lazy = false,
+  },
 }
