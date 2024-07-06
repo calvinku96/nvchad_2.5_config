@@ -49,6 +49,7 @@ autocmd("FileType", {
     vim.opt.softtabstop = 4
     vim.opt.tabstop = 4
     vim.opt.colorcolumn = "111"
+    vim.bo.commentstring = "// %s"
   end,
 })
 autocmd("FileType", {
