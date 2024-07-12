@@ -25,6 +25,7 @@ map("n", "<M-l>", "<C-w>l", { desc = "Window right" })
 map("n", "<M-j>", "<C-w>j", { desc = "Window down" })
 map("n", "<M-k>", "<C-w>k", { desc = "Window up" })
 map("n", "<F4>", "<cmd>NvimTreeToggle <CR>", { desc = "Toggle nvimtree" })
+map("n", "<leader>e", "<cmd>NvimTreeToggle <CR>", { desc = "Toggle nvimtree" })
 map("n", "<F9>", function()
   if vim.bo.filetype == "tex" then
     vim.cmd [[ execute ':wa' ]]
