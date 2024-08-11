@@ -116,7 +116,8 @@ vim.g.highlighturl_enabled = false
 vim.g.Tex_DefaultTargetFormat = "pdf"
 vim.g.Tex_MultipleCompileFormats = "pdf"
 -- vim.g.Tex_CompileRule_pdf = 'luahblatex -synctex=1 -interaction=nonstopmode -file-line-error-style "$*"'
-vim.g.Tex_CompileRule_pdf = 'pdflatex -synctex=1 -interaction=nonstopmode -file-line-error-style "$*"'
+vim.g.Tex_CompileRule_pdf = "pdflatex -synctex=1 -interaction=nonstopmode -file-line-error-style $*"
+vim.g.Tex_BibtexFlavor = "biber"
 vim.g.diagnostics_mode = 0
 vim.diagnostic.disable()
 vim.opt.spelllang = "en_us"
