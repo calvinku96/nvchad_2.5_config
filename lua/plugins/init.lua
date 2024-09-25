@@ -14,6 +14,9 @@ return {
       require "configs.lspconfig"
     end, -- Override to setup mason-lspconfig
   },
+  {
+    "barreiroleo/ltex_extra.nvim",
+  },
   { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
   {
     "williamboman/mason.nvim",
@@ -31,6 +34,7 @@ return {
         "isort",
         "stylua",
         "clang-format",
+        "ltex-ls",
       },
     },
   },

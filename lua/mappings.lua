@@ -204,3 +204,6 @@ autocmd("FileType", {
     map("n", "<C-j>", "<Plug>IMAP_JumpForward")
   end,
 })
+map("n", "<leader>a", function()
+  vim.lsp.buf.code_action()
+end, { desc = "Code actions" })
