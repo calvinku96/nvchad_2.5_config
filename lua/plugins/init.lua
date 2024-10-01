@@ -161,4 +161,19 @@ return {
     "folke/which-key.nvim",
     lazy = false,
   },
+  {
+    "m00qek/baleia.nvim",
+    config = function()
+      vim.g.baleia = require("baleia").setup {}
+    end,
+    keys = {
+      {
+        "<leader>C",
+        function()
+          vim.g.baleia.once(vim.api.nvim_get_current_buf())
+        end,
+        desc = "Colorize text",
+      },
+    },
+  },
 }
