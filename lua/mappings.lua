@@ -235,5 +235,6 @@ map("n", "<leader>a", function()
   vim.lsp.buf.code_action()
 end, { desc = "Code actions" })
 map({ "n", "v" }, "<RightMouse>", function()
-  require("menu").open(require "menu_options", { mouse = true })
+  local options = require "menu_options"
+  require("menu").open(options(vim.fn.mode()), { mouse = true })
 end, { desc = "Menu" })
