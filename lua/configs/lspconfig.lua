@@ -43,6 +43,7 @@ lspconfig.ltex.setup {
   end,
   on_init = on_init,
   capabilities = capabilities,
+  filetypes = { "tex" },
   settings = {
     ltex = {
       dictionary = {
