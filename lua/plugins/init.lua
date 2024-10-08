@@ -36,6 +36,7 @@ return {
         "clang-format",
         "ltex-ls",
       },
+      max_concurrent_installers = 1,
     },
   },
   {
