@@ -14,6 +14,9 @@ return {
       require "configs.lspconfig"
     end, -- Override to setup mason-lspconfig
   },
+  {
+    "barreiroleo/ltex_extra.nvim",
+  },
   { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
   {
     "williamboman/mason.nvim",
@@ -31,6 +34,7 @@ return {
         "isort",
         "stylua",
         "clang-format",
+        "ltex-ls",
       },
     },
   },
@@ -156,5 +160,20 @@ return {
   {
     "folke/which-key.nvim",
     lazy = false,
+  },
+  {
+    "m00qek/baleia.nvim",
+    config = function()
+      vim.g.baleia = require("baleia").setup {}
+    end,
+    keys = {
+      {
+        "<leader>C",
+        function()
+          vim.g.baleia.once(vim.api.nvim_get_current_buf())
+        end,
+        desc = "Colorize text",
+      },
+    },
   },
 }

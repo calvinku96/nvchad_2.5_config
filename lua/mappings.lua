@@ -126,6 +126,33 @@ map({ "n", "t" }, "<A-i>", function()
       col = 0.05,
       width = 0.9,
       height = 0.9,
+      {
+        name = "Format Buffer",
+        cmd = function()
+          local ok, conform = pcall(require, "conform")
+
+          if ok then
+            conform.format { lsp_fallback = true }
+          else
+            vim.lsp.buf.format()
+          end
+        end,
+        rtxt = "<leader>fm",
+      },
+      {
+        name = "Format Buffer",
+        cmd = function()
+          local ok, conform = pcall(require, "conform")
+
+          if ok then
+            conform.format { lsp_fallback = true }
+          else
+            vim.lsp.buf.format()
+          end
+        end,
+        rtxt = "<leader>fm",
+      },
+
       border = "single",
     },
   }
@@ -204,3 +231,10 @@ autocmd("FileType", {
     map("n", "<C-j>", "<Plug>IMAP_JumpForward")
   end,
 })
+map("n", "<leader>a", function()
+  vim.lsp.buf.code_action()
+end, { desc = "Code actions" })
+map({ "n", "v" }, "<RightMouse>", function()
+  local options = require "menu_options"
+  require("menu").open(options(vim.fn.mode()), { mouse = true })
+end, { desc = "Menu" })
