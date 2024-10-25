@@ -18,7 +18,7 @@ end
 lspconfig.clangd.setup {
   on_attach = on_attach,
   capabilities = vim.tbl_deep_extend("force", capabilities, { offsetEncoding = "utf-8" }),
-  -- cmd = { "clangd", "--header-insertion=never" },
+  cmd = { "clangd", "--header-insertion=never" },
 }
 lspconfig.pyright.setup {
   on_attach = on_attach,
