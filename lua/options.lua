@@ -48,3 +48,4 @@ vim.g.diagnostics_mode = 0
 vim.g.rustfmt_autosave = 1
 vim.diagnostic.disable()
 vim.opt.spelllang = "en_us"
+vim.g.lua_snippets_path = vim.fn.stdpath "config" .. "/lua/lua_snippets"
