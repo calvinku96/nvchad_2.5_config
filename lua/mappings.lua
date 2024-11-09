@@ -238,3 +238,6 @@ map({ "n", "v" }, "<RightMouse>", function()
   local options = require "menu_options"
   require("menu").open(options(vim.fn.mode()), { mouse = true })
 end, { desc = "Menu" })
+
+map("n", "<leader>e", "<cmd>Oil .<cr>", { desc = "Open oil in cwd" })
+map("n", "<leader>E", "<cmd>Oil<cr>", { desc = "Open oil in parent of current file" })
