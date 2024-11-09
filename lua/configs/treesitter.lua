@@ -25,7 +25,7 @@ local M = {
     "vim",
     "yaml",
     -- "query",
-    "latex",
+    -- "latex",
   },
   indent = {
     enable = false,
@@ -33,12 +33,13 @@ local M = {
     --   "python"
     -- },
   },
-  ignore_install = { "fortran" },
+  ignore_install = { "fortran", "latex" },
   sync_install = true,
   auto_install = true,
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
+    disable = { "fortran", "latex" },
   },
 }
 return M

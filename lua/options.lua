@@ -6,7 +6,6 @@ require "nvchad.options"
 -- o.cursorlineopt ='both' -- to enable cursorline!
 --
 vim.cmd [[ let fortran_do_enddo=1 ]]
-vim.cmd [[ let frotran_free_source=1 ]]
 vim.cmd [[ let fortran_free_source=1 ]]
 if vim.g.neovide then
   vim.g.neovide_scroll_animation_length = 0
@@ -39,11 +38,11 @@ vim.g.icons_enabled = true
 vim.g.ui_notifications_enabled = true
 vim.g.tex_conceal = ""
 vim.g.highlighturl_enabled = false
-vim.g.Tex_DefaultTargetFormat = "pdf"
-vim.g.Tex_MultipleCompileFormats = "pdf"
+-- vim.g.Tex_DefaultTargetFormat = "pdf"
+-- vim.g.Tex_MultipleCompileFormats = "pdf"
 -- vim.g.Tex_CompileRule_pdf = 'luahblatex -synctex=1 -interaction=nonstopmode -file-line-error-style "$*"'
-vim.g.Tex_CompileRule_pdf = "pdflatex -synctex=1 -interaction=nonstopmode -file-line-error-style $*"
-vim.g.Tex_BibtexFlavor = "biber"
+-- vim.g.Tex_CompileRule_pdf = "pdflatex -synctex=1 -interaction=nonstopmode -file-line-error-style $*"
+-- vim.g.Tex_BibtexFlavor = "biber"
 vim.g.diagnostics_mode = 0
 vim.g.rustfmt_autosave = 1
 vim.diagnostic.disable()
