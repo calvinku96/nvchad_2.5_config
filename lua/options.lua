@@ -49,3 +49,4 @@ vim.g.rustfmt_autosave = 1
 vim.diagnostic.disable()
 vim.opt.spelllang = "en_us"
 vim.g.lua_snippets_path = vim.fn.stdpath "config" .. "/lua/lua_snippets"
+vim.g.vscode_snippets_exclude = { "latex", "tex" }

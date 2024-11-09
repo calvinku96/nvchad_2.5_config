@@ -1,5 +1,5 @@
 return {
-  s("newpy", {
+  s({ trig = "PYNEW", snippetType = "autosnippet" }, {
     t {
       "#!/usr/bin/env python3",
       "",

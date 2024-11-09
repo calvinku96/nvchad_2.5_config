@@ -88,6 +88,16 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
       { "kdheepak/cmp-latex-symbols" },
+      {
+        -- snippet plugin
+        "L3MON4D3/LuaSnip",
+        dependencies = "rafamadriz/friendly-snippets",
+        opts = { history = true, updateevents = "TextChanged,TextChangedI", enable_autosnippets = true },
+        config = function(_, opts)
+          require("luasnip").config.set_config(opts)
+          require "nvchad.configs.luasnip"
+        end,
+      },
     },
     opts = function()
       return require "configs.cmp"
@@ -126,11 +136,6 @@ return {
   {
     "windwp/nvim-autopairs",
     enabled = false,
-  },
-  {
-    "calvinku96/vim-latex",
-    branch = "own",
-    ft = "tex",
   },
   {
     "junegunn/vim-easy-align",
@@ -218,6 +223,7 @@ return {
         },
         ["<leader>t"] = { "actions.select", opts = { tab = true }, desc = "Open the entry in new tab" },
         ["<leader>q"] = "actions.close",
+        ["<leader>e"] = "actions.close",
       },
       view_options = {
         show_hidden = true,
@@ -225,4 +231,34 @@ return {
     },
   },
   { "dstein64/vim-startuptime", cmd = "StartupTime", lazy = false },
+  {
+    "calvinku96/vim-latex",
+    branch = "own",
+    ft = "tex",
+    enabled = false,
+  },
+  {
+    "lervag/vimtex",
+    -- ft="latex",
+    lazy = false,
+    init = function()
+      vim.g.vimtex_compiler_method = "latexmk"
+      vim.g.vimtex_compiler_latexmk = {
+        ["aux_dir"] = "",
+        ["out_dir"] = "",
+        ["callback"] = 0,
+        ["continuous"] = 0,
+        ["executable"] = "latexmk",
+        ["hooks"] = {},
+        ["options"] = {
+          "-verbose",
+          "-file-line-error",
+          "-synctex=1",
+          "-interaction=nonstopmode",
+        },
+      }
+      vim.g.vimtex_view_general_options = ""
+      vim.g.vimtex_syntax_enabled = false
+    end,
+  },
 }

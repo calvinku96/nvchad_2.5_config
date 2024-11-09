@@ -63,6 +63,8 @@ autocmd("FileType", {
     end
 
     cmp.setup.buffer { sources = sources }
+
+    vim.keymap.set("i", "<A-i>", "\\item ")
   end,
 })
 autocmd("FileType", {

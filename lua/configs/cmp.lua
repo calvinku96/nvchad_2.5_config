@@ -4,9 +4,10 @@ local snip = require "luasnip"
 local override = {
   mapping = {
     ["<C-j>"] = cmp.mapping(function(fallback)
-      if vim.bo.filetype == "tex" then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>IMAP_JumpForward", true, true, true), "")
-      elseif snip.expand_or_jumpable() then
+      -- if vim.bo.filetype == "tex" then
+      --   vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>IMAP_JumpForward", true, true, true), "")
+      -- elseif snip.expand_or_jumpable() then
+      if snip.expand_or_jumpable() then
         vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
       elseif cmp.visible() then
         cmp.select_next_item { behaviour = cmp.SelectBehavior.Insert }

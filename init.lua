@@ -14,7 +14,6 @@ vim.opt.rtp:prepend(lazypath)
 local lazy_config = require "configs.lazy"
 
 -- load plugins
-vim.g.vscode_snippets_path = vim.fn.stdpath "config" .. "/lua/lua_snippets"
 require("lazy").setup({
   {
     "NvChad/NvChad",

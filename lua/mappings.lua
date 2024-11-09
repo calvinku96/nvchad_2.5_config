@@ -8,7 +8,7 @@ local unmap = vim.keymap.del
 unmap("n", "<C-s>")
 unmap("n", "<C-n>")
 unmap("n", "<A-v>")
-unmap("n", "<A-i>")
+-- unmap("n", "<A-i>")
 unmap("n", "<C-h>")
 unmap("n", "<C-j>")
 unmap("n", "<C-k>")
@@ -24,12 +24,12 @@ map("n", "<M-h>", "<C-w>h", { desc = "Window left" })
 map("n", "<M-l>", "<C-w>l", { desc = "Window right" })
 map("n", "<M-j>", "<C-w>j", { desc = "Window down" })
 map("n", "<M-k>", "<C-w>k", { desc = "Window up" })
-map("n", "<F4>", "<cmd>NvimTreeToggle <CR>", { desc = "Toggle nvimtree" })
-map("n", "<leader>e", "<cmd>NvimTreeToggle <CR>", { desc = "Toggle nvimtree" })
+-- map("n", "<F4>", "<cmd>NvimTreeToggle <CR>", { desc = "Toggle nvimtree" })
+-- map("n", "<leader>e", "<cmd>NvimTreeToggle <CR>", { desc = "Toggle nvimtree" })
 map("n", "<F9>", function()
   if vim.bo.filetype == "tex" then
-    vim.cmd [[ execute ':wa' ]]
-    vim.fn.Tex_RunLaTeX()
+    vim.cmd [[ :wa ]]
+    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>(vimtex-compile)", true, true, true), "")
   elseif vim.bo.filetype == "rust" then
     vim.cmd [[
       execute ':wa'
@@ -56,8 +56,11 @@ map("n", "<F9>", function()
       ]]
   end
 end)
-map("n", "<C-F9>", function()
-  vim.cmd [[
+map("n", "<S-F9>", function()
+  if vim.bo.filetype == "tex" then
+    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>(vimtex-clean)", true, true, true), "")
+  else
+    vim.cmd [[
       execute ':wa'
       if filereadable("CMakeLists.txt")
           let build_dir = get(g:, "cmake_build_dir", "build")
@@ -69,6 +72,7 @@ map("n", "<C-F9>", function()
           make -j8 clean
       endif
     ]]
+  end
 end)
 map("n", "<C-9>", "<cmd>cc<CR>", { desc = "current error" })
 map("n", "<C-0>", "<cmd>cn<CR>", { desc = "next error" })
@@ -126,33 +130,6 @@ map({ "n", "t" }, "<A-i>", function()
       col = 0.05,
       width = 0.9,
       height = 0.9,
-      {
-        name = "Format Buffer",
-        cmd = function()
-          local ok, conform = pcall(require, "conform")
-
-          if ok then
-            conform.format { lsp_fallback = true }
-          else
-            vim.lsp.buf.format()
-          end
-        end,
-        rtxt = "<leader>fm",
-      },
-      {
-        name = "Format Buffer",
-        cmd = function()
-          local ok, conform = pcall(require, "conform")
-
-          if ok then
-            conform.format { lsp_fallback = true }
-          else
-            vim.lsp.buf.format()
-          end
-        end,
-        rtxt = "<leader>fm",
-      },
-
       border = "single",
     },
   }
