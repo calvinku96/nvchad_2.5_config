@@ -1,8 +1,15 @@
+local concurrency = nil
+if vim.env.MAX_PROCS ~= "" then
+  concurrency = tonumber(vim.env.MAX_PROCS)
+elseif jit.os.find "Windows" then
+  concurrency = vim.iv.available_parallelism() * 2
+end
+
 return {
   defaults = { lazy = true },
   install = { colorscheme = { "nvchad" } },
   lockfile = vim.fn.stdpath "data" .. "/lazy-lock.json",
-
+  concurrency = concurrency,
   ui = {
     icons = {
       ft = "",

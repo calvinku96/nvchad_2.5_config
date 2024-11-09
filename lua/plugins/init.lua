@@ -1,3 +1,8 @@
+local mason_concurrency = 4
+if vim.env.MAX_PROCS ~= "" then
+  mason_concurrency = tonumber(vim.env.MAX_PROCS)
+end
+
 return {
   {
     "stevearc/conform.nvim",
@@ -36,6 +41,7 @@ return {
         "clang-format",
         "ltex-ls",
       },
+      max_concurrent_installers = mason_concurrency,
     },
   },
   {
