@@ -11,6 +11,9 @@ local environment_snip = function(trig, name)
     t { "", "\\end{" .. name .. "}" },
   })
 end
+local environment_snip_f5 = function(name)
+  return environment_snip(name .. "<F5>", name)
+end
 local section_snip = function(trig, name)
   return s({ trig = trig, snippetType = "autosnippet" }, {
     t("\\" .. name .. "{"),
@@ -33,7 +36,7 @@ local bracket_snip = function(trig, prefix, suffix, desc)
   desc = desc == nil and "" or desc
   return s({ trig = trig, snippetType = "autosnippet", wordTrig = false }, {
     t(prefix),
-    i(1, "<+" .. desc .. "+>"),
+    i(1, desc),
     t(suffix),
     i(0, ""),
   })
@@ -52,6 +55,16 @@ return {
   environment_snip("EGG", "gather"),
   environment_snip("EGS", "gather*"),
   environment_snip("FRA", "frame"),
+  environment_snip_f5 "enumerate",
+  environment_snip_f5 "itemize",
+  environment_snip_f5 "align",
+  environment_snip_f5 "align*",
+  environment_snip_f5 "array",
+  environment_snip_f5 "equation",
+  environment_snip_f5 "equation*",
+  environment_snip_f5 "gather",
+  environment_snip_f5 "gather*",
+  environment_snip_f5 "frame",
   s({ trig = "ENV", snippetType = "autosnippet" }, {
     t { "\\begin{" },
     i(1, "<+env+>"),
@@ -127,5 +140,6 @@ return {
   math_snip("`Y", { t "\\Psi" }),
 
   bracket_snip("FBF", "\\mathbf{", "}"),
+  bracket_snip("CAL", "\\mathcal{", "}"),
   bracket_snip("FEM", "\\emph{", "}"),
 }
