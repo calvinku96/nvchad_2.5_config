@@ -174,20 +174,20 @@ map("n", "<leader>n", "<cmd>set nu!<CR>")
 map("n", "<leader>rn", "<cmd>set rnu!<CR>")
 
 map("n", "<leader>B", function()
-  if vim.diagnostic.is_disabled() then
-    print "Diagnostics disabled"
-  else
+  if vim.diagnostic.is_enabled() then
     print "Diagnostics enabled"
+  else
+    print "Diagnostics disabled"
   end
 end, { desc = "Toggle diagnostics" })
 map("n", "<leader>d", function()
   local d = vim.diagnostic
-  if d.is_disabled() then
+  if d.is_enabled() then
+    d.enable(false)
+    print "Diagnostics disabled"
+  else
     d.enable()
     print "Diagnostics enabled"
-  else
-    d.disable()
-    print "Diagnostics disabled"
   end
 end, { desc = "Toggle diagnostics" })
 map("n", "<leader>k", function()
@@ -199,12 +199,13 @@ end, { desc = "Diagnostics setqflist" })
 
 map("n", "<leader>ft", function()
   require("telescope").extensions.ctags.tags { ctags_file = "tags" }
-end, { desc = "Find CTags" })
+end, { desc = "telescope find ctags" })
+map("n", "<leader>b", "<cmd>Telescope buffers<CR>", { desc = "telescope find buffers" })
 
 local autocmd = vim.api.nvim_create_autocmd
 autocmd("FileType", {
   pattern = "tex",
-  callback = function(args)
+  callback = function()
     map("n", "<C-j>", "<Plug>IMAP_JumpForward")
   end,
 })

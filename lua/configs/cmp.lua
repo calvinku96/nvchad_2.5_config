@@ -82,7 +82,7 @@ local override = {
 }
 -- print "===========================BEFORE==========================="
 -- vim.print(def)
-res = vim.tbl_deep_extend("force", def, override)
+local res = vim.tbl_deep_extend("force", def, override)
 -- print "===========================AFTER==========================="
 -- vim.print(res)
 return res

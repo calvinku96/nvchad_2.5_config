@@ -1,6 +1,9 @@
 local mason_concurrency = 4
 if vim.env.MAX_PROCS ~= "" then
-  mason_concurrency = tonumber(vim.env.MAX_PROCS)
+  local temp = tonumber(vim.env.MAX_PROCS)
+  if temp ~= nil then
+    mason_concurrency = temp
+  end
 end
 
 return {

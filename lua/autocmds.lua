@@ -3,12 +3,12 @@ require "nvchad.autocmds"
 local autocmd = vim.api.nvim_create_autocmd
 autocmd("FileType", {
   pattern = "python",
-  callback = function(args)
+  callback = function()
     vim.opt.colorcolumn = "90"
   end,
 })
 autocmd("BufEnter", {
-  callback = function(args)
+  callback = function()
     if vim.bo.filetype == "fortran" then
       vim.opt.expandtab = true
       vim.opt.shiftwidth = 3
@@ -20,7 +20,7 @@ autocmd("BufEnter", {
 })
 autocmd("FileType", {
   pattern = "make",
-  callback = function(args)
+  callback = function()
     vim.opt.expandtab = false
     vim.opt.shiftwidth = 8
     vim.opt.softtabstop = 0
@@ -29,7 +29,7 @@ autocmd("FileType", {
 })
 autocmd("FileType", {
   pattern = "lua",
-  callback = function(args)
+  callback = function()
     vim.opt.expandtab = true
     vim.opt.shiftwidth = 2
     vim.opt.softtabstop = 2
@@ -38,7 +38,7 @@ autocmd("FileType", {
 })
 autocmd("FileType", {
   pattern = "cpp",
-  callback = function(args)
+  callback = function()
     vim.opt.expandtab = true
     vim.opt.shiftwidth = 4
     vim.opt.softtabstop = 4
@@ -49,7 +49,7 @@ autocmd("FileType", {
 })
 autocmd("FileType", {
   pattern = "tex",
-  callback = function(args)
+  callback = function()
     vim.opt.expandtab = true
     vim.opt.shiftwidth = 2
     vim.opt.softtabstop = 2
@@ -69,7 +69,7 @@ autocmd("FileType", {
 })
 autocmd("FileType", {
   pattern = "*",
-  callback = function(args)
+  callback = function()
     vim.opt_local.formatoptions:remove "c"
     vim.opt_local.formatoptions:remove "r"
     vim.opt_local.formatoptions:remove "o"
