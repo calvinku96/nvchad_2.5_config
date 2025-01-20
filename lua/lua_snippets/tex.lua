@@ -69,7 +69,7 @@ return {
     t { "\\begin{" },
     i(1, "<+env+>"),
     t { "}", "\t" },
-    i(0, "<++>"),
+    i(0, ""),
     t { "", "\\end{" },
     f(function(args, parent)
       return args[1][1]
