@@ -84,7 +84,7 @@ return {
   command_snip("CIT", "cite", "cite", "~"),
   command_snip("LAB", "label", "label"),
   command_snip("REF", "ref", "ref", "~"),
-  command_snip("FT", "frametitle", "title"),
+  command_snip("FTT", "frametitle", "title"),
 
   bracket_snip("__", "_{", "}"),
   bracket_snip("^^", "^{", "}"),
