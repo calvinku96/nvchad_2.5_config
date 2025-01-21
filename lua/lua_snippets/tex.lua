@@ -19,7 +19,7 @@ local section_snip = function(trig, name)
     t("\\" .. name .. "{"),
     i(1, "<+section name+>"),
     t { "}", "" },
-    i(0, "<++>"),
+    i(0, ""),
   })
 end
 local command_snip = function(trig, name, desc, suf)
