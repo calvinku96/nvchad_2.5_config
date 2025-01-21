@@ -4,3 +4,10 @@ Hamiltonians
 fermion-to-qubit
 qubit
 QEE
+wavefunction
+ancillas
+Bravyi-Kitaev
+unitaries
+Trotterization
+qubitization
+qDRIFT
