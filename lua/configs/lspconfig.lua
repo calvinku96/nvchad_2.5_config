@@ -33,25 +33,25 @@ lspconfig.pyright.setup {
     },
   },
 }
-if vim.fn.executable "java" then
-  word_file = (vim.fn.stdpath "config") .. "/spell/en.utf-8.add"
-  lspconfig.ltex.setup {
-    on_attach = function(client, bufnr)
-      on_attach(client, bufnr)
-      require("ltex_extra").setup {
-        path = vim.fn.stdpath "config" .. "/spell/",
-      }
-    end,
-    on_init = on_init,
-    capabilities = capabilities,
-    filetypes = { "tex" },
-    settings = {
-      ltex = {
-        dictionary = {
-          -- ["en-US"] = { ":" .. word_file },
-          ["en-US"] = { ":/home/calvin/.config/nvim/spell/spell.txt" },
-        },
-      },
-    },
-  }
-end
+-- if vim.fn.executable "java" then
+--   word_file = (vim.fn.stdpath "config") .. "/spell/en.utf-8.add"
+--   lspconfig.ltex.setup {
+--     on_attach = function(client, bufnr)
+--       on_attach(client, bufnr)
+--       require("ltex_extra").setup {
+--         path = vim.fn.stdpath "config" .. "/spell/",
+--       }
+--     end,
+--     on_init = on_init,
+--     capabilities = capabilities,
+--     filetypes = { "tex" },
+--     settings = {
+--       ltex = {
+--         dictionary = {
+--           -- ["en-US"] = { ":" .. word_file },
+--           ["en-US"] = { ":/home/calvin/.config/nvim/spell/spell.txt" },
+--         },
+--       },
+--     },
+--   }
+-- end

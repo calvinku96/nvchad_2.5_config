@@ -263,6 +263,7 @@ return {
       vim.g.vimtex_view_general_options = ""
       vim.g.vimtex_view_enabled = false
       vim.g.vimtex_syntax_enabled = true
+      vim.g.vimtex_matchparen_enabled = false
     end,
   },
 }
