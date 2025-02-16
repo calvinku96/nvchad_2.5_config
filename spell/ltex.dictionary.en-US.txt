@@ -11,3 +11,8 @@ unitaries
 Trotterization
 qubitization
 qDRIFT
+hypercontraction
+Qubitization
+trotterization
+Polylog
+Qubit-Efficient
