@@ -36,3 +36,7 @@ gth-cc-qzvp
 anticommutation
 anticommutative
 diagonalized
+UCCSD
+VQE
+Eigensolver
+Szegedy
