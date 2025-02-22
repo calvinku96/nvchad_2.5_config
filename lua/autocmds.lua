@@ -53,6 +53,7 @@ autocmd("FileType", {
     vim.opt.expandtab = true
     vim.opt.shiftwidth = 2
     vim.opt.softtabstop = 2
+    vim.cmd [[ NoMatchParen ]]
 
     local cmp = require "cmp"
     local sources = cmp.get_config().sources
