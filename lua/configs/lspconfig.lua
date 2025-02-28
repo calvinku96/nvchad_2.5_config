@@ -4,7 +4,7 @@ local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "bashls", "cmake", "fortls", "rust_analyzer" }
+local servers = { "bashls", "cmake", "fortls", "rust_analyzer", "julials" }
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
