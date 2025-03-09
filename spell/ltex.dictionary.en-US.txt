@@ -40,3 +40,9 @@ UCCSD
 VQE
 Eigensolver
 Szegedy
+qSWIFT
+QROAM
+QROM
+ancillae
+Carolan
+antisymmetrization
