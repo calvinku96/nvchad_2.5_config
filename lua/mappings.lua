@@ -219,3 +219,31 @@ end, { desc = "Menu" })
 
 map("n", "<leader>e", "<cmd>Oil .<cr>", { desc = "Open oil in cwd" })
 map("n", "<leader>E", "<cmd>Oil<cr>", { desc = "Open oil in parent of current file" })
+
+map({ "n", "v" }, "<leader>cw", function()
+  local word_count
+  if vim.fn.mode() == "v" or vim.fn.mode() == "V" or vim.fn.mode() == "" then
+    word_count = vim.fn.wordcount().visual_words .. " words"
+  else
+    word_count = vim.fn.wordcount().words .. " words"
+  end
+
+  local width = string.len(word_count)
+  local height = 1
+  local buf = vim.api.nvim_create_buf(false, true)
+  local ui = vim.api.nvim_list_uis()[0]
+
+  vim.api.nvim_buf_set_lines(buf, 0, 0, false, { word_count })
+
+  local opts = {
+    relative = "cursor",
+    width = width,
+    height = height,
+    col = 0,
+    row = 0,
+    anchor = "SW",
+    style = "minimal",
+    border = { "╔", "═", "╗", "║", "╝", "═", "╚", "║" },
+  }
+  local win = vim.api.nvim_open_win(buf, 1, opts)
+end, { desc = "Count words" })
