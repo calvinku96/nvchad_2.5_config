@@ -48,3 +48,17 @@ Carolan
 antisymmetrization
 Hypercontraction
 FeMoCo
+wavefunctions
+Wavefunction
+Majorana-free
+non-Toffoli
+wavevector
+wavevectors
+pseudopotentials
+functionals
+quantizations
+observables
+Hermitians
+Daubechies
+antisymmetrized
+ket
