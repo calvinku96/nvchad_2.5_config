@@ -43,6 +43,7 @@ return {
         "stylua",
         "clang-format",
         "ltex-ls",
+        "pyproject-fmt",
       },
       max_concurrent_installers = mason_concurrency,
     },

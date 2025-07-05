@@ -5,6 +5,16 @@ local options = {
     -- html = { "prettier" },
     python = { "isort", "black" },
     cpp = { "clang_format" },
+    toml = function(bufnr)
+      local filepath = vim.api.nvim_buf_get_name(bufnr)
+      local filename = vim.fn.fnamemodify(filepath, ":t")
+
+      if filename == "pyproject.toml" then
+        return { "pyproject-fmt" }
+      else
+        return {}
+      end
+    end,
   },
 
   -- format_on_save = {
