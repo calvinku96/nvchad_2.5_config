@@ -5,6 +5,7 @@ local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
 local servers = { "bashls", "cmake", "fortls", "rust_analyzer", "julials" }
+local enable_ltex = false
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
@@ -33,8 +34,8 @@ lspconfig.pyright.setup {
     },
   },
 }
-if vim.fn.executable "java" then
-  word_file = (vim.fn.stdpath "config") .. "/spell/en.utf-8.add"
+if vim.fn.executable "java" and enable_ltex then
+  -- local word_file = (vim.fn.stdpath "config") .. "/spell/en.utf-8.add"
   lspconfig.ltex.setup {
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
