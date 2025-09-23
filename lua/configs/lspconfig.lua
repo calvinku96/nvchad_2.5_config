@@ -9,19 +9,21 @@ local enable_ltex = false
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
+  vim.lsp.config(lsp, {
     on_attach = on_attach,
     on_init = on_init,
     capabilities = capabilities,
-  }
+  })
+  vim.lsp.enable(lsp)
 end
 
-lspconfig.clangd.setup {
+vim.lsp.config("clangd", {
   on_attach = on_attach,
   capabilities = vim.tbl_deep_extend("force", capabilities, { offsetEncoding = "utf-8" }),
   cmd = { "clangd", "--header-insertion=never" },
-}
-lspconfig.pyright.setup {
+})
+vim.lsp.enable "clangd"
+vim.lsp.config("pyright", {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
@@ -33,10 +35,11 @@ lspconfig.pyright.setup {
       },
     },
   },
-}
+})
+vim.lsp.enable "pyright"
 if vim.fn.executable "java" and enable_ltex then
   -- local word_file = (vim.fn.stdpath "config") .. "/spell/en.utf-8.add"
-  lspconfig.ltex.setup {
+  vim.lsp.config("ltex", {
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
       require("ltex_extra").setup {
@@ -54,5 +57,6 @@ if vim.fn.executable "java" and enable_ltex then
         },
       },
     },
-  }
+  })
+  vim.lsp.enable "ltex"
 end
