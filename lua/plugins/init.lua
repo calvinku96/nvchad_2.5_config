@@ -277,6 +277,10 @@ return {
         rhs = "\\varepsilon",
       }
       vim.fn["vimtex#imaps#add_map"] {
+        lhs = "E",
+        rhs = "\\epsilon",
+      }
+      vim.fn["vimtex#imaps#add_map"] {
         lhs = "f",
         rhs = "\\varphi",
       }
@@ -295,10 +299,6 @@ return {
       vim.fn["vimtex#imaps#add_map"] {
         lhs = "Y",
         rhs = "\\Psi",
-      }
-      vim.fn["vimtex#imaps#add_map"] {
-        lhs = "N",
-        rhs = "\\Nabla",
       }
       vim.fn["vimtex#imaps#add_map"] {
         lhs = "@",
