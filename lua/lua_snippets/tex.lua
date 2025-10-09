@@ -115,7 +115,7 @@ return {
   bracket_snip("`^", "\\hat{", "}"),
   bracket_snip("`_", "\\bar{", "}"),
   bracket_snip("`2", "\\sqrt{", "}"),
-  math_snip("`/", { t "\\frac{", i(1, "<++>"), t "}{", i(2, "<++>"), t "}", i(0, "<++>") }),
+  math_snip("`/", { t "\\frac{", i(1, ""), t "}{", i(2, ""), t "}", i(0, "") }),
 
   bracket_snip("FBF", "\\mathbf{", "}"),
   bracket_snip("FBB", "\\mathbb{", "}"),
