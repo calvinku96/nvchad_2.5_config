@@ -19,7 +19,7 @@ local section_snip = function(trig, name)
     t("\\" .. name .. "{"),
     i(1, "<+section name+>"),
     t { "}", "" },
-    i(0, ""),
+    i(0, "<++>"),
   })
 end
 local command_snip = function(trig, name, desc, suf)
@@ -29,16 +29,26 @@ local command_snip = function(trig, name, desc, suf)
     t(suf .. "\\" .. name .. "{"),
     i(1, "<+" .. desc .. "+>"),
     t { "}" },
-    i(0, ""),
+    i(0, "<++>"),
+  })
+end
+local math_command_snip = function(trig, name, desc, suf)
+  desc = desc == nil and "" or desc
+  suf = suf == nil and "" or suf
+  return s({ trig = trig, snippetType = "autosnippet", wordTrig = false, condition = in_mathzone }, {
+    t(suf .. "\\" .. name .. "{"),
+    i(1, "<+" .. desc .. "+>"),
+    t { "}" },
+    i(0, "<++>"),
   })
 end
 local bracket_snip = function(trig, prefix, suffix, desc)
   desc = desc == nil and "" or desc
   return s({ trig = trig, snippetType = "autosnippet", wordTrig = false }, {
     t(prefix),
-    i(1, desc),
+    i(1, "<+" .. desc .. "+>"),
     t(suffix),
-    i(0, ""),
+    i(0, "<++>"),
   })
 end
 local math_snip = function(trig, obj)
@@ -49,21 +59,25 @@ return {
   environment_snip("EIT", "itemize"),
   environment_snip("EAL", "align"),
   environment_snip("EAS", "align*"),
+  environment_snip("ELL", "aligned"),
   environment_snip("EAR", "array"),
   environment_snip("EEQ", "equation"),
   environment_snip("EES", "equation*"),
   environment_snip("EGG", "gather"),
   environment_snip("EGS", "gather*"),
+  environment_snip("EGA", "gathered"),
   environment_snip("FRA", "frame"),
   environment_snip_f5 "enumerate",
   environment_snip_f5 "itemize",
   environment_snip_f5 "align",
   environment_snip_f5 "align*",
+  environment_snip_f5 "aligned",
   environment_snip_f5 "array",
   environment_snip_f5 "equation",
   environment_snip_f5 "equation*",
   environment_snip_f5 "gather",
   environment_snip_f5 "gather*",
+  environment_snip_f5 "gathered",
   environment_snip_f5 "frame",
   s({ trig = "ENV", snippetType = "autosnippet" }, {
     t { "\\begin{" },
@@ -101,45 +115,14 @@ return {
   bracket_snip("`^", "\\hat{", "}"),
   bracket_snip("`_", "\\bar{", "}"),
   bracket_snip("`2", "\\sqrt{", "}"),
-  math_snip("`/", { t "\\frac{", i(1, "<++>"), t "}{", i(2, "<++>"), t "}", i(0) }),
-  math_snip("`6", { t "\\partial" }),
-  math_snip("`8", { t "\\infty" }),
-  math_snip("`@", { t "\\circ" }),
-  math_snip("`=", { t "\\equiv" }),
-  math_snip("`*", { t "\\times" }),
-  math_snip("`<", { t "\\le" }),
-  math_snip("`>", { t "\\ge" }),
-
-  math_snip("`a", { t "\\alpha" }),
-  math_snip("`b", { t "\\beta" }),
-  math_snip("`c", { t "\\chi" }),
-  math_snip("`d", { t "\\delta" }),
-  math_snip("`e", { t "\\varepsilon" }),
-  math_snip("`f", { t "\\varphi" }),
-  math_snip("`g", { t "\\gamma" }),
-  math_snip("`h", { t "\\eta" }),
-  math_snip("`i", { t "\\iota" }),
-  math_snip("`k", { t "\\kappa" }),
-  math_snip("`l", { t "\\lambda" }),
-  math_snip("`m", { t "\\mu" }),
-  math_snip("`n", { t "\\nu" }),
-  math_snip("`o", { t "\\omicron" }),
-  math_snip("`p", { t "\\pi" }),
-  math_snip("`q", { t "\\theta" }),
-  math_snip("`r", { t "\\rho" }),
-  math_snip("`s", { t "\\sigma" }),
-  math_snip("`t", { t "\\tau" }),
-  math_snip("`u", { t "\\upsilon" }),
-  math_snip("`v", { t "\\varsigma" }),
-  math_snip("`w", { t "\\omaga" }),
-  math_snip("`x", { t "\\xi" }),
-  math_snip("`y", { t "\\psi" }),
-  math_snip("`z", { t "\\zeta" }),
-  math_snip("`N", { t "\\Nabla" }),
-  math_snip("`T", { t "\\theta" }),
-  math_snip("`Y", { t "\\Psi" }),
+  math_snip("`/", { t "\\frac{", i(1, "<++>"), t "}{", i(2, "<++>"), t "}", i(0, "<++>") }),
 
   bracket_snip("FBF", "\\mathbf{", "}"),
+  bracket_snip("FBB", "\\mathbb{", "}"),
   bracket_snip("CAL", "\\mathcal{", "}"),
   bracket_snip("FEM", "\\emph{", "}"),
+
+  math_command_snip("KET", "ket", "ket"),
+  math_command_snip("BRA", "bra", "bra"),
+  math_command_snip("OPR", "operatorname", "operatorname"),
 }

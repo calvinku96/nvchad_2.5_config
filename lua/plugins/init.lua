@@ -235,12 +235,12 @@ return {
     },
   },
   { "dstein64/vim-startuptime", cmd = "StartupTime", lazy = false },
-  {
-    "calvinku96/vim-latex",
-    branch = "own",
-    ft = "tex",
-    enabled = false,
-  },
+  -- {
+  --   "calvinku96/vim-latex",
+  --   branch = "own",
+  --   ft = "tex",
+  --   enabled = false,
+  -- },
   {
     "lervag/vimtex",
     -- ft="latex",
@@ -265,6 +265,49 @@ return {
       vim.g.vimtex_view_enabled = false
       vim.g.vimtex_syntax_enabled = true
       vim.g.vimtex_matchparen_enabled = false
+      vim.g.vimtex_imaps_disabled = { "2" }
+    end,
+    config = function()
+      vim.fn["vimtex#imaps#add_map"] {
+        lhs = "e",
+        rhs = "\\varepsilon",
+      }
+      vim.fn["vimtex#imaps#add_map"] {
+        lhs = "f",
+        rhs = "\\varphi",
+      }
+      vim.fn["vimtex#imaps#add_map"] {
+        lhs = "o",
+        rhs = "\\omicron",
+      }
+      vim.fn["vimtex#imaps#add_map"] {
+        lhs = "v",
+        rhs = "\\varsigma",
+      }
+      vim.fn["vimtex#imaps#add_map"] {
+        lhs = "y",
+        rhs = "\\psi",
+      }
+      vim.fn["vimtex#imaps#add_map"] {
+        lhs = "Y",
+        rhs = "\\Psi",
+      }
+      vim.fn["vimtex#imaps#add_map"] {
+        lhs = "N",
+        rhs = "\\Nabla",
+      }
+      vim.fn["vimtex#imaps#add_map"] {
+        lhs = "@",
+        rhs = "\\circ",
+      }
+      vim.fn["vimtex#imaps#add_map"] {
+        lhs = "<",
+        rhs = "\\le",
+      }
+      vim.fn["vimtex#imaps#add_map"] {
+        lhs = ">",
+        rhs = "\\ge",
+      }
     end,
   },
 }
