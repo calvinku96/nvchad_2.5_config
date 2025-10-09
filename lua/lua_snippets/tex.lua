@@ -19,7 +19,7 @@ local section_snip = function(trig, name)
     t("\\" .. name .. "{"),
     i(1, "<+section name+>"),
     t { "}", "" },
-    i(0, "<++>"),
+    i(0, ""),
   })
 end
 local command_snip = function(trig, name, desc, suf)
@@ -29,7 +29,7 @@ local command_snip = function(trig, name, desc, suf)
     t(suf .. "\\" .. name .. "{"),
     i(1, "<+" .. desc .. "+>"),
     t { "}" },
-    i(0, "<++>"),
+    i(0, ""),
   })
 end
 local math_command_snip = function(trig, name, desc, suf)
@@ -39,7 +39,7 @@ local math_command_snip = function(trig, name, desc, suf)
     t(suf .. "\\" .. name .. "{"),
     i(1, "<+" .. desc .. "+>"),
     t { "}" },
-    i(0, "<++>"),
+    i(0, ""),
   })
 end
 local bracket_snip = function(trig, prefix, suffix, desc)
@@ -48,7 +48,7 @@ local bracket_snip = function(trig, prefix, suffix, desc)
     t(prefix),
     i(1, "<+" .. desc .. "+>"),
     t(suffix),
-    i(0, "<++>"),
+    i(0, ""),
   })
 end
 local math_snip = function(trig, obj)
