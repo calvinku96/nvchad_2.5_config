@@ -46,7 +46,7 @@ local bracket_snip = function(trig, prefix, suffix, desc)
   desc = desc == nil and "" or desc
   return s({ trig = trig, snippetType = "autosnippet", wordTrig = false }, {
     t(prefix),
-    i(1, "<+" .. desc .. "+>"),
+    i(1, ""),
     t(suffix),
     i(0, ""),
   })
