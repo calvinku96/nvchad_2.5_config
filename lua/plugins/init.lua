@@ -28,6 +28,7 @@ return {
   { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
   {
     "williamboman/mason.nvim",
+    dependencies = { "mason-org/mason-registry" },
     opts = {
       PATH = "append",
       ensure_installed = {
