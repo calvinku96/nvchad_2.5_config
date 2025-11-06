@@ -97,7 +97,6 @@ autocmd("FileType", {
         ls.text_node "\t",
         ls.insert_node(1, ""),
         ls.text_node { "", end_env, "" },
-        ls.insert_node(0, ""),
       })
 
       ls.snip_expand(snip)
