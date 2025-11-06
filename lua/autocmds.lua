@@ -80,7 +80,7 @@ autocmd("FileType", {
       vim.api.nvim_put({ start_str .. selected_text .. end_str }, "c", false, false)
     end
 
-    vim.keymap.set("v", "$$", function()
+    vim.keymap.set("v", "<F8>", function()
       surround_visual("$", "$")
     end, { desc = "Surround with $...$" })
     vim.keymap.set("v", "<F5>", function()
@@ -95,9 +95,9 @@ autocmd("FileType", {
       local snip = ls.snippet({ snippetType = "snippet" }, {
         ls.text_node { begin_env, "" },
         ls.text_node "\t",
-        ls.insert_node(1, "<++>"),
+        ls.insert_node(1, ""),
         ls.text_node { "", end_env, "" },
-        ls.insert_node(0, "<++>"),
+        ls.insert_node(0, ""),
       })
 
       ls.snip_expand(snip)
