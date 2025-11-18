@@ -239,6 +239,12 @@ return {
       },
     },
   },
+  {
+    "nvim-tree/nvim-tree.lua",
+    keys = {
+      { "<F4>", ":NvimTreeToggle<CR>", desc = "nvim tree" },
+    },
+  },
   { "dstein64/vim-startuptime", cmd = "StartupTime", lazy = false },
   -- {
   --   "calvinku96/vim-latex",
