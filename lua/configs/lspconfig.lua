@@ -4,7 +4,7 @@ local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "bashls", "cmake", "fortls", "rust_analyzer", "julials" }
+local servers = { "bashls", "cmake", "fortls", "rust_analyzer", "julials", "ruff" }
 local enable_ltex = false
 
 -- lsps with default config
@@ -23,20 +23,21 @@ vim.lsp.config("clangd", {
   cmd = { "clangd", "--header-insertion=never" },
 })
 vim.lsp.enable "clangd"
-vim.lsp.config("pyright", {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    python = {
-      analysis = {
-        autoSearchPaths = true,
-        useLibraryCodeForTypes = true,
-        diagnosticMode = "openFilesOnly",
-      },
-    },
-  },
-})
-vim.lsp.enable "pyright"
+-- vim.lsp.config("pyright", {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   settings = {
+--     python = {
+--       analysis = {
+--         autoSearchPaths = true,
+--         useLibraryCodeForTypes = true,
+--         diagnosticMode = "openFilesOnly",
+--       },
+--     },
+--   },
+-- })
+-- vim.lsp.enable "pyright"
+
 if vim.fn.executable "java" and enable_ltex then
   -- local word_file = (vim.fn.stdpath "config") .. "/spell/en.utf-8.add"
   vim.lsp.config("ltex", {
