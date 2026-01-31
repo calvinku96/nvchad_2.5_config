@@ -84,7 +84,7 @@ return {
     cmd = { "TSUpdate", "TSInstall", "TSUninstall" },
     config = function(_, opts)
       dofile(vim.g.base46_cache .. "syntax")
-      require("nvim-treesitter.configs").setup(opts)
+      require("nvim-treesitter.config").setup(opts)
       if vim.fn.has "win32" == 1 then
         require("nvim-treesitter.install").compilers = { "clang" }
       end
