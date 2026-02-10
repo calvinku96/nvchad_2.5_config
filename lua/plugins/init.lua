@@ -80,15 +80,20 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = require "configs.treesitter",
-    cmd = { "TSUpdate", "TSInstall", "TSUninstall" },
-    config = function(_, opts)
-      dofile(vim.g.base46_cache .. "syntax")
-      require("nvim-treesitter.config").setup(opts)
-      if vim.fn.has "win32" == 1 then
-        require("nvim-treesitter.install").compilers = { "clang" }
-      end
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+    build = ":TSUpdate | TSInstallAll",
+    opts = function()
+      return require "configs.treesitter"
     end,
+    -- config = function(_, opts)
+    --   dofile(vim.g.base46_cache .. "syntax")
+    --   require("nvim-treesitter.config").setup(opts)
+    --   if vim.fn.has "win32" == 1 then
+    --     require("nvim-treesitter.install").compilers = { "clang" }
+    --   end
+    -- end,
+    -- cmd = { "TSUpdate", "TSInstall", "TSUninstall" },
   },
   {
     "hrsh7th/nvim-cmp",

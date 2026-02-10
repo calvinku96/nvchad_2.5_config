@@ -1,4 +1,5 @@
-local M = {
+local nvchad_settings = require "nvchad.configs.treesitter"
+local own_settings = {
   ensure_installed = {
     "bash",
     "bibtex",
@@ -27,19 +28,13 @@ local M = {
     -- "query",
     -- "latex",
   },
-  indent = {
-    enable = false,
-    -- disable = {
-    --   "python"
-    -- },
-  },
-  ignore_install = { "fortran", "latex" },
-  sync_install = true,
-  auto_install = true,
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-    disable = { "fortran", "latex" },
-  },
+  -- ignore_install = { "fortran", "latex" },
+  -- sync_install = true,
+  -- auto_install = true,
+  -- highlight = {
+  --   enable = true,
+  --   additional_vim_regex_highlighting = false,
+  --   disable = { "fortran", "latex" },
+  -- },
 }
-return M
+return vim.tbl_deep_extend("force", nvchad_settings, own_settings)
