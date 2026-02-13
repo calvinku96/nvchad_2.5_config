@@ -27,28 +27,32 @@ return {
   },
   { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
   {
-    "williamboman/mason.nvim",
-    dependencies = { "mason-org/mason-registry" },
-    opts = {
-      PATH = "append",
-      ensure_installed = {
-        "lua-language-server",
-        "bash-language-server",
-        "clangd",
-        "cmake-language-server",
-        "fortls",
-        "pyright",
-        "rust-analyzer",
-        -- "black",
-        -- "isort",
-        "ruff",
-        "stylua",
-        "clang-format",
-        "ltex-ls",
-        "pyproject-fmt",
-      },
-      max_concurrent_installers = mason_concurrency,
-    },
+    "mason-org/mason.nvim",
+    cmd = { "Mason", "MasonInstall", "MasonUpdate" },
+    opts = function()
+      local def = require "nvchad.configs.mason"
+      local new = {
+        PATH = "append",
+        ensure_installed = {
+          "lua-language-server",
+          "bash-language-server",
+          "clangd",
+          "cmake-language-server",
+          "fortls",
+          "pyright",
+          "rust-analyzer",
+          -- "black",
+          -- "isort",
+          "ruff",
+          "stylua",
+          "clang-format",
+          "ltex-ls",
+          "pyproject-fmt",
+        },
+        max_concurrent_installers = mason_concurrency,
+      }
+      return vim.tbl_deep_extend("force", def, new)
+    end,
   },
   {
     "nvim-telescope/telescope.nvim",
