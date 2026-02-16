@@ -49,3 +49,8 @@ vim.diagnostic.enable(false)
 vim.opt.spelllang = "en_us"
 vim.g.lua_snippets_path = vim.fn.stdpath "config" .. "/lua/lua_snippets"
 vim.g.vscode_snippets_exclude = { "latex", "tex" }
+
+vim.api.nvim_create_user_command("TSInstallAll2", function()
+  local spec = require "configs.treesitter"
+  require("nvim-treesitter").install(spec.ensure_installed)
+end, {})
