@@ -47,6 +47,15 @@ autocmd("FileType", {
     vim.bo.commentstring = "// %s"
   end,
 })
+autocmd("FileType", {
+  pattern = "nix",
+  callback = function()
+    vim.opt.expandtab = true
+    vim.opt.shiftwidth = 2
+    vim.opt.softtabstop = 2
+    vim.opt.tabstop = 2
+  end,
+})
 
 autocmd("FileType", {
   pattern = "tex",

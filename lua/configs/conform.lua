@@ -5,6 +5,7 @@ local options = {
     -- html = { "prettier" },
     python = { "ruff_format", "isort" },
     cpp = { "clang-format" },
+    nix = { "nixfmt" },
     toml = function(bufnr)
       local filepath = vim.api.nvim_buf_get_name(bufnr)
       local filename = vim.fn.fnamemodify(filepath, ":t")
