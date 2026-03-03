@@ -117,7 +117,19 @@ return {
   bracket_snip("`2", "\\sqrt{", "}"),
   math_snip("`/", { t "\\frac{", i(1, ""), t "}{", i(2, ""), t "}", i(0, "") }),
 
-  bracket_snip("FBF", "\\mathbf{", "}"),
+  -- bracket_snip("FBF", "\\mathbf{", "}"),
+  s({ trig = "FBF", snippetType = "autosnippet", wordTrig = false }, {
+    f(function()
+      if in_mathzone() then
+        return "\\mathbb{"
+      else
+        return "\\textbf{"
+      end
+    end, {}),
+    i(1, ""),
+    t "}",
+    i(0, ""),
+  }),
   bracket_snip("FBB", "\\mathbb{", "}"),
   bracket_snip("CAL", "\\mathcal{", "}"),
   bracket_snip("FEM", "\\emph{", "}"),
