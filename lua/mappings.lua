@@ -37,6 +37,10 @@ map("n", "<F9>", function()
       make
       copen 15
       ]]
+  elseif vim.bo.filetype == "python" then
+    local uv = require "uv"
+    vim.cmd [[ :wa ]]
+    uv.run_file()
   else
     vim.cmd [[
         execute ':wa'
