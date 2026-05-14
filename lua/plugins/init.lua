@@ -31,24 +31,33 @@ return {
     cmd = { "Mason", "MasonInstall", "MasonUpdate" },
     opts = function()
       local def = require "nvchad.configs.mason"
-      local new = {
-        PATH = "append",
-        ensure_installed = {
-          "lua-language-server",
-          "bash-language-server",
+      local is_nixos = vim.fn.executable "nixos-rebuild" == 1 or vim.loop.fs_stat "/etc/nixos" ~= nil
+      ensure_installed = {
+        "lua-language-server",
+        "bash-language-server",
+        "pyright",
+        -- "black",
+        -- "isort",
+        "ruff",
+        "stylua",
+        "ltex-ls",
+        "pyproject-fmt",
+      }
+
+      if not is_nixos then
+        -- Add system-dependent tools only if NOT on NixOS
+        local non_nixos_tools = {
           "clangd",
+          "clang-format",
           "cmake-language-server",
           "fortls",
-          "pyright",
           "rust-analyzer",
-          -- "black",
-          -- "isort",
-          "ruff",
-          "stylua",
-          "clang-format",
-          "ltex-ls",
-          "pyproject-fmt",
-        },
+        }
+        vim.list_extend(ensure_installed, non_nixos_tools)
+      end
+      local new = {
+        PATH = "append",
+        ensure_installed = ensure_installed,
         max_concurrent_installers = mason_concurrency,
       }
       return vim.tbl_deep_extend("force", def, new)

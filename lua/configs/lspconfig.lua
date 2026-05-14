@@ -20,7 +20,14 @@ end
 vim.lsp.config("clangd", {
   on_attach = on_attach,
   capabilities = vim.tbl_deep_extend("force", capabilities, { offsetEncoding = "utf-8" }),
-  cmd = { "clangd", "--header-insertion=never" },
+  cmd = {
+    "clangd",
+    "--header-insertion=never",
+    -- "--background-index",
+    -- "--completion-style=detailed",
+    -- "--function-arg-placeholders",
+    -- "--fallback-style=llvm",
+  },
 })
 vim.lsp.enable "clangd"
 -- vim.lsp.config("pyright", {
