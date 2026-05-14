@@ -32,7 +32,7 @@ return {
     opts = function()
       local def = require "nvchad.configs.mason"
       local is_nixos = vim.fn.executable "nixos-rebuild" == 1 or vim.loop.fs_stat "/etc/nixos" ~= nil
-      ensure_installed = {
+      local ensure_installed = {
         "lua-language-server",
         "bash-language-server",
         "pyright",
