@@ -78,6 +78,16 @@ map("n", "<S-F9>", function()
     ]]
   end
 end)
+map("n", "<F10>", function()
+  if vim.bo.filetype == "tex" then
+    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>(vimtex-stop)", true, true, true), "")
+  end
+end)
+map("n", "<S-F10>", function()
+  if vim.bo.filetype == "tex" then
+    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>(vimtex-stop-all)", true, true, true), "")
+  end
+end)
 map("n", "<C-9>", "<cmd>cc<CR>", { desc = "current error" })
 map("n", "<C-0>", "<cmd>cn<CR>", { desc = "next error" })
 map("n", "<C-8>", "<cmd>cp<CR>", { desc = "prev error" })

@@ -281,7 +281,7 @@ return {
         ["aux_dir"] = "",
         ["out_dir"] = "",
         ["callback"] = 0,
-        ["continuous"] = 0,
+        ["continuous"] = 1,
         ["executable"] = "latexmk",
         ["hooks"] = {},
         ["options"] = {
@@ -294,7 +294,7 @@ return {
       vim.g.vimtex_view_general_options = ""
       vim.g.vimtex_view_enabled = false
       vim.g.vimtex_syntax_enabled = true
-      vim.g.vimtex_matchparen_enabled = false
+      vim.g.vimtex_matchparen_enabled = true
       vim.g.vimtex_imaps_disabled = { "2" }
     end,
     config = function()
