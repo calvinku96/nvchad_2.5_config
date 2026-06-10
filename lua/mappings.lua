@@ -187,13 +187,16 @@ map("x", "ga", "<Plug>(EasyAlign)", { desc = "EasyAlign" })
 map("n", "<leader>n", "<cmd>set nu!<CR>")
 map("n", "<leader>rn", "<cmd>set rnu!<CR>")
 
-map("n", "<leader>B", function()
-  if vim.diagnostic.is_enabled() then
-    print "Diagnostics enabled"
-  else
-    print "Diagnostics disabled"
-  end
-end, { desc = "Toggle diagnostics" })
+map("n", "<leader>3", vim.diagnostic.goto_next, { desc = "Jump to next diagnostic in the current buffer" })
+map("n", "<leader>2", vim.diagnostic.goto_prev, { desc = "Jump to last diagnostic in the current buffer" })
+
+-- map("n", "<leader>B", function()
+--   if vim.diagnostic.is_enabled() then
+--     print "Diagnostics enabled"
+--   else
+--     print "Diagnostics disabled"
+--   end
+-- end, { desc = "Toggle diagnostics" })
 map("n", "<leader>d", function()
   local d = vim.diagnostic
   if d.is_enabled() then
@@ -261,3 +264,17 @@ map({ "n", "v" }, "<leader>cw", function()
   }
   local win = vim.api.nvim_open_win(buf, 1, opts)
 end, { desc = "Count words" })
+
+map("n", "<F8>", function()
+  local output = vim.fn.system "nix fmt"
+  local efm = "%f:%l:%c: %m,%f:%l: %m"
+
+  -- This magic function parses the raw string output using your errorformat
+  vim.fn.setqflist({}, "r", {
+    title = "Nix Fmt",
+    lines = vim.split(output, "\n"),
+    efm = efm,
+  })
+
+  vim.cmd "copen"
+end, { desc = "Run nix fmt" })
