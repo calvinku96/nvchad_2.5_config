@@ -80,12 +80,7 @@ map("n", "<S-F9>", function()
 end)
 map("n", "<F10>", function()
   if vim.bo.filetype == "tex" then
-    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>(vimtex-stop)", true, true, true), "")
-  end
-end)
-map("n", "<S-F10>", function()
-  if vim.bo.filetype == "tex" then
-    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>(vimtex-stop-all)", true, true, true), "")
+    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>(vimtex-view)", true, true, true), "")
   end
 end)
 map("n", "<C-9>", "<cmd>cc<CR>", { desc = "current error" })

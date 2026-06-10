@@ -292,7 +292,10 @@ return {
         },
       }
       vim.g.vimtex_view_general_options = ""
-      vim.g.vimtex_view_enabled = false
+      vim.g.vimtex_view_enabled = true
+      if vim.fn.executable "zathura" == 1 then
+        vim.g.vimtex_view_method = "zathura"
+      end
       vim.g.vimtex_syntax_enabled = true
       vim.g.vimtex_matchparen_enabled = true
       vim.g.vimtex_imaps_disabled = { "2" }
