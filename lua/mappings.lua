@@ -78,7 +78,7 @@ map("n", "<S-F9>", function()
     ]]
   end
 end)
-map("n", "<F10>", function()
+map("n", "<F11>", function()
   if vim.bo.filetype == "tex" then
     vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>(vimtex-view)", true, true, true), "")
   end

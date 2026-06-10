@@ -299,6 +299,7 @@ return {
       vim.g.vimtex_syntax_enabled = true
       vim.g.vimtex_matchparen_enabled = true
       vim.g.vimtex_imaps_disabled = { "2" }
+      vim.g.vimtex_mappings_prefix = "<leader>i"
     end,
     config = function()
       vim.fn["vimtex#imaps#add_map"] {
