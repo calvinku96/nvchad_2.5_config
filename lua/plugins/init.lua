@@ -277,6 +277,22 @@ return {
     lazy = false,
     init = function()
       vim.g.vimtex_compiler_method = "latexmk"
+
+      local synctex = "1"
+      vim.g.vimtex_view_enabled = true
+      if vim.fn.has "win32" == 1 then
+        if vim.fn.executable "SumatraPDF" then
+          vim.g.vimtex_view_method = "general"
+          vim.g.vimtex_view_general_viewer = "SumatraPDF"
+          vim.g.vimtex_view_general_options = "-reuse-instance -forward-search @tex @line @pdf"
+          synctex = "-1"
+        end
+      else
+        if vim.fn.executable "zathura" == 1 then
+          vim.g.vimtex_view_method = "zathura"
+        end
+      end
+
       vim.g.vimtex_compiler_latexmk = {
         ["aux_dir"] = "",
         ["out_dir"] = "",
@@ -287,15 +303,11 @@ return {
         ["options"] = {
           "-verbose",
           "-file-line-error",
-          "-synctex=1",
+          "-synctex=" .. synctex,
           "-interaction=nonstopmode",
         },
       }
-      vim.g.vimtex_view_general_options = ""
-      vim.g.vimtex_view_enabled = true
-      if vim.fn.executable "zathura" == 1 then
-        vim.g.vimtex_view_method = "zathura"
-      end
+
       vim.g.vimtex_syntax_enabled = true
       vim.g.vimtex_matchparen_enabled = true
       vim.g.vimtex_imaps_disabled = { "2" }
