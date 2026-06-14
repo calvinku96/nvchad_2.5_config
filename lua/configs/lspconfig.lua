@@ -17,6 +17,12 @@ for _, lsp in ipairs(servers) do
   vim.lsp.enable(lsp)
 end
 
+vim.lsp.config("ctags_lsp", {
+  cmd = { "ctags-lsp" },
+  filetypes = { "python" },
+})
+vim.lsp.enable "ctags_lsp"
+
 vim.lsp.config("clangd", {
   on_attach = on_attach,
   capabilities = vim.tbl_deep_extend("force", capabilities, { offsetEncoding = "utf-8" }),
