@@ -79,8 +79,20 @@ map("n", "<S-F9>", function()
   end
 end)
 map("n", "<F11>", function()
-  if vim.bo.filetype == "tex" then
-    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>(vimtex-view)", true, true, true), "")
+  if vim.fn.executable "ctags" == 1 then
+    -- Use 'async' or simple system call.
+    -- Adding '&' to the end runs it in the background on Unix-like systems.
+    print "Running ctags..."
+    vim.fn.system "ctags -R ."
+
+    -- Check if the command succeeded
+    if vim.v.shell_error == 0 then
+      print "ctags generated successfully."
+    else
+      print "ctags failed to run. Check your config files."
+    end
+  else
+    print "Error: ctags does not exist in your PATH"
   end
 end)
 map("n", "<C-9>", "<cmd>cc<CR>", { desc = "current error" })
