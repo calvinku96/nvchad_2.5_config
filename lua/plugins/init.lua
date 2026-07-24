@@ -278,14 +278,12 @@ return {
     init = function()
       vim.g.vimtex_compiler_method = "latexmk"
 
-      local synctex = "1"
       vim.g.vimtex_view_enabled = true
       if vim.fn.has "win32" == 1 then
         if vim.fn.executable "SumatraPDF" then
           vim.g.vimtex_view_method = "general"
           vim.g.vimtex_view_general_viewer = "SumatraPDF"
           vim.g.vimtex_view_general_options = "-reuse-instance -forward-search @tex @line @pdf"
-          synctex = "-1"
         end
       else
         if vim.fn.executable "zathura" == 1 then
@@ -300,13 +298,7 @@ return {
         ["continuous"] = 1,
         ["executable"] = "latexmk",
         ["hooks"] = {},
-        ["options"] = {
-          "-pdf",
-          "-verbose",
-          "-file-line-error",
-          "-synctex=" .. synctex,
-          "-interaction=nonstopmode",
-        },
+        ["options"] = {}, -- fallback to the latexmkrc
       }
 
       vim.g.vimtex_syntax_enabled = true
